@@ -31,12 +31,12 @@ This Terraform configuration creates a production-grade Amazon EKS cluster with 
 │  │    EKS Cluster    │    │    VPC Module     │                       │
 │  │                   │    │                   │                       │
 │  │ ┌───────────────┐ │    │ ┌───────────────┐ │    ┌───────────────┐  │
-│  │ │ Control Plane │ │    │ │ Public Subnets│ │    │  S3 Backend   │  │
-│  │ └───────────────┘ │    │ └───────────────┘ │    │  (State)      │  │
-│  │                   │    │                   │    └───────────────┘  │
-│  │ ┌───────────────┐ │    │ ┌───────────────┐ │    ┌───────────────┐  │
-│  │ │  Fargate Pods │ │    │ │ Private Subnet│ │    │ DynamoDB Lock │  │
-│  │ └───────────────┘ │    │ └───────────────┘ │    │    Table      │  │
+│  │ │ Control Plane │ │    │ │ Public Subnets│ │    │ Local Backend │  │
+│  │ └───────────────┘ │    │ └───────────────┘ │    │  (Migration)  │  │
+│  │                   │    │                   │    └───────|───────┘  │
+│  │ ┌───────────────┐ │    │ ┌───────────────┐ │    ┌───────|───────┐  │
+│  │ │  Fargate Pods │ │    │ │ Private Subnet│ │    │ S3 Backend    │  |
+│  │ └───────────────┘ │    │ └───────────────┘ │    │    (State)    │  │
 │  │                   │    │                   │    └───────────────┘  │
 │  │ ┌───────────────┐ │    │ ┌───────────────┐ │                       │
 │  │ │ Managed Nodes │ │    │ │   NAT GW      │ │                       │
